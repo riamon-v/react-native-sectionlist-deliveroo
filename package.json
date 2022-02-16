@@ -1,0 +1,46 @@
+{
+  "name": "react-native-sectionlist-deliveroo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riamon-v/react-native-sectionlist-deliveroo.git"
+  },
+  "keywords": [
+    "deliveroo",
+    "header",
+    "section-list",
+    "section",
+    "deliveroo",
+    "header-list",
+    "header",
+    "react-native",
+    "scrollview"
+  ],
+  "files": [
+    "lib/**/*"
+  ],
+  "license": "MIT",
+  "author": "riamon-v",
+  "bugs": {
+    "url": "https://github.com/riamon-v/react-native-sectionlist-deliveroo/issues"
+  },
+  "homepage": "https://github.com/riamon-v/react-native-sectionlist-deliveroo#readme",
+  "devDependencies": {
+    "@types/react": "~16.9.35",
+    "@types/react-native": "~0.63.2",
+    "metro-react-native-babel-preset": "^0.65.1",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "react-native": "^0.67.2",
+    "react-native-reanimated": "^2.4.1"
+  }
+}

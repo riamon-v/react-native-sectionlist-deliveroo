@@ -1,12 +1,18 @@
 {
   "name": "react-native-sectionlist-deliveroo",
   "version": "1.0.0",
-  "description": "",
+  "description": "This package is inspired by deliveroo App. It provides a section list with a header component to make the list bidirectionnal.\nThe header is scrolling horizontally and contains the name of the sections.\nWhile scrolling into the section list it updates the header and vice-versa",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +28,9 @@
     "header-list",
     "header",
     "react-native",
-    "scrollview"
+    "scrollview",
+    "bidirectionnal list",
+    "bidirectionnal"
   ],
   "files": [
     "lib/**/*"
@@ -37,6 +45,9 @@
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "metro-react-native-babel-preset": "^0.65.1",
+    "prettier": "^2.5.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.1.5"
   },
   "dependencies": {

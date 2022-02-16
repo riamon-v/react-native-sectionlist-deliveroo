@@ -1,10 +1,6 @@
-import React from "react";
-import { StyleProp, StyleSheet, ViewStyle } from "react-native";
-import Animated, {
-  SharedValue,
-  useAnimatedStyle,
-  withTiming,
-} from "react-native-reanimated";
+import React from 'react';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import Animated, { SharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 interface IndicatorProps {
   indicatorPos: SharedValue<{
@@ -14,10 +10,7 @@ interface IndicatorProps {
   indicatorContainerStyle?: StyleProp<ViewStyle>;
 }
 
-const Indicator = ({
-  indicatorPos,
-  indicatorContainerStyle,
-}: IndicatorProps) => {
+const Indicator = ({ indicatorPos, indicatorContainerStyle }: IndicatorProps) => {
   const style = useAnimatedStyle(() => {
     const { x, width } = indicatorPos.value;
     return {
@@ -30,9 +23,7 @@ const Indicator = ({
     <Animated.View
       style={[
         styles.indicatorStyle,
-        indicatorContainerStyle
-          ? indicatorContainerStyle
-          : styles.defaultIndicatorStyle,
+        indicatorContainerStyle ? indicatorContainerStyle : styles.defaultIndicatorStyle,
         style,
       ]}
     />
@@ -41,17 +32,17 @@ const Indicator = ({
 
 const styles = StyleSheet.create({
   defaultIndicatorStyle: {
-    backgroundColor: "red",
+    backgroundColor: 'red',
     borderRadius: 50,
   },
   indicatorStyle: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     bottom: 0,
   },
   defaultItemStyle: {
     marginHorizontal: 12,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 15,
   },
 });

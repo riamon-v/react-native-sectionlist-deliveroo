@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import React, { RefObject } from 'react';
 import {
   findNodeHandle,
   FlatList,
@@ -10,9 +10,9 @@ import {
   TextStyle,
   View,
   ViewStyle,
-} from "react-native";
-import { useSharedValue } from "react-native-reanimated";
-import Indicator from "./Indicator";
+} from 'react-native';
+import { useSharedValue } from 'react-native-reanimated';
+import Indicator from './Indicator';
 
 interface SectionHeaderStylingProps {
   colors?: {
@@ -25,10 +25,8 @@ interface SectionHeaderStylingProps {
 }
 
 interface SectionHeaderProps extends SectionHeaderStylingProps {
-  sectionTitles: Array<string>;
-  sectionListRef: RefObject<
-    SectionList<any, { title: string; key: string; data: any[] }>
-  >;
+  sectionTitles: string[];
+  sectionListRef: RefObject<SectionList<any, { title: string; key: string; data: any[] }>>;
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
   setHasBeenSetOnScroll: (v: boolean) => void;
@@ -50,9 +48,7 @@ const ItemHeader = React.forwardRef<
         style={[
           styles.defaultItemStyle,
           {
-            color: props.active
-              ? props.colors?.active ?? "white"
-              : props.colors?.inactive ?? "black",
+            color: props.active ? props.colors?.active ?? 'white' : props.colors?.inactive ?? 'black',
           },
           props.headerItemStyle,
         ]}
@@ -64,22 +60,11 @@ const ItemHeader = React.forwardRef<
 });
 
 const SectionHeader: React.FC<SectionHeaderProps> = (props) => {
-  const {
-    sectionTitles,
-    sectionListRef,
-    activeIndex,
-    setActiveIndex,
-    setHasBeenSetOnScroll,
-  } = props;
-  const [measures, setMeasures] = React.useState<
-    Array<{ x: number; width: number }>
-  >([]);
+  const { sectionTitles, sectionListRef, activeIndex, setActiveIndex, setHasBeenSetOnScroll } = props;
+  const [measures, setMeasures] = React.useState<{ x: number; width: number }[]>([]);
   const containerRef = React.useRef<FlatList<any>>(null);
   const indicatorPos = useSharedValue({ width: 0, x: 0 });
-  const refs = React.useMemo(
-    () => sectionTitles.map(() => React.createRef<View>()),
-    []
-  );
+  const refs = React.useMemo(() => sectionTitles.map(() => React.createRef<View>()), []);
 
   React.useEffect(() => {
     containerRef?.current?.scrollToIndex({
@@ -92,17 +77,13 @@ const SectionHeader: React.FC<SectionHeaderProps> = (props) => {
   }, [activeIndex]);
 
   React.useEffect(() => {
-    if (
-      !!measures[0] &&
-      indicatorPos.value.x === 0 &&
-      indicatorPos.value.width === 0
-    ) {
+    if (!!measures[0] && indicatorPos.value.x === 0 && indicatorPos.value.width === 0) {
       indicatorPos.value = { width: measures[0].width, x: measures[0].x };
     }
   }, [measures]);
 
   React.useEffect(() => {
-    let ms: Array<{ x: number; width: number }> = [];
+    const ms: { x: number; width: number }[] = [];
     refs.forEach((r: RefObject<View>, index) => {
       r.current?.measureLayout(
         findNodeHandle(containerRef.current),
@@ -112,7 +93,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = (props) => {
             setMeasures(ms);
           }
         },
-        () => null
+        () => null,
       );
     });
   }, []);
@@ -126,10 +107,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = (props) => {
       contentContainerStyle={[props.headerContainerStyle]}
       keyExtractor={(item) => item}
       ListHeaderComponent={
-        <Indicator
-          indicatorPos={indicatorPos}
-          indicatorContainerStyle={props.indicatorContainerStyle}
-        />
+        <Indicator indicatorPos={indicatorPos} indicatorContainerStyle={props.indicatorContainerStyle} />
       }
       renderItem={({ item, index }) => (
         <ItemHeader
@@ -155,7 +133,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = (props) => {
 const styles = StyleSheet.create({
   defaultItemStyle: {
     marginHorizontal: 12,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 15,
   },
 });

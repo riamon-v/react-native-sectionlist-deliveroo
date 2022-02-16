@@ -1,20 +1,8 @@
-import React from "react";
-import {
-  SectionList,
-  SectionListProps,
-  StyleProp,
-  View,
-  ViewStyle,
-  ViewToken,
-} from "react-native";
-import {
-  SectionHeader,
-  SectionHeaderStylingProps,
-} from "./SectionHeaderDeliveroo";
+import React from 'react';
+import { SectionList, SectionListProps, StyleProp, View, ViewStyle, ViewToken } from 'react-native';
+import { SectionHeader, SectionHeaderStylingProps } from './SectionHeaderDeliveroo';
 
-interface SectionListDeliverooProps
-  extends SectionHeaderStylingProps,
-    SectionListProps<any, any> {
+interface SectionListDeliverooProps extends SectionHeaderStylingProps, SectionListProps<any, any> {
   containerStyle?: StyleProp<ViewStyle>;
 }
 
@@ -23,11 +11,7 @@ const SectionListDeliveroo: React.FC<SectionListDeliverooProps> = (props) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const hasBeenSetOnScroll = React.useRef(false);
 
-  const onCheckViewableItems = ({
-    viewableItems,
-  }: {
-    viewableItems: ViewToken[];
-  }) => {
+  const onCheckViewableItems = ({ viewableItems }: { viewableItems: ViewToken[] }) => {
     const {
       section: { key },
     } = viewableItems[0];

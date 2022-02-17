@@ -84,19 +84,22 @@ const SectionHeader: React.FC<SectionHeaderProps> = (props) => {
 
   React.useEffect(() => {
     const ms: { x: number; width: number }[] = [];
-    refs.forEach((r: RefObject<View>, index) => {
-      r.current?.measureLayout(
-        findNodeHandle(containerRef.current),
-        (x: number, y: number, width: number, height: number) => {
-          ms.push({ x, width });
-          if (ms.length === sectionTitles.length) {
-            setMeasures(ms);
-          }
-        },
-        () => null,
-      );
-    });
-  }, []);
+
+    if (!!containerRef.current) {
+      refs.forEach((r: RefObject<View>, index) => {
+        r.current?.measureLayout(
+          findNodeHandle(containerRef.current),
+          (x: number, y: number, width: number, height: number) => {
+            ms.push({ x, width });
+            if (ms.length === sectionTitles.length) {
+              setMeasures(ms);
+            }
+          },
+          () => null,
+        );
+      });
+    }
+  }, [containerRef.current]);
 
   return (
     <FlatList

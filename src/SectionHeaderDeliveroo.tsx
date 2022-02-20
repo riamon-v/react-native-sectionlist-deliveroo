@@ -106,29 +106,34 @@ const SectionHeader: React.FC<SectionHeaderProps> = (props) => {
       horizontal
       data={sectionTitles}
       ref={containerRef}
+      removeClippedSubviews={false}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={[props.headerContainerStyle]}
       keyExtractor={(item) => item}
-      ListHeaderComponent={
-        <Indicator indicatorPos={indicatorPos} indicatorContainerStyle={props.indicatorContainerStyle} />
-      }
-      renderItem={({ item, index }) => (
-        <ItemHeader
-          label={item}
-          ref={refs[index]}
-          onPress={() => {
-            setHasBeenSetOnScroll(false);
-            setActiveIndex(index);
-            sectionListRef?.current?.scrollToLocation({
-              animated: true,
-              sectionIndex: index,
-              itemIndex: 0,
-            });
-          }}
-          active={activeIndex === index}
-          {...props}
-        />
-      )}
+      renderItem={({ item, index }) => {
+        return (
+          <>
+            {index === 0 && (
+              <Indicator indicatorPos={indicatorPos} indicatorContainerStyle={props.indicatorContainerStyle} />
+            )}
+            <ItemHeader
+              label={item}
+              ref={refs[index]}
+              onPress={() => {
+                setHasBeenSetOnScroll(false);
+                setActiveIndex(index);
+                sectionListRef?.current?.scrollToLocation({
+                  animated: true,
+                  sectionIndex: index,
+                  itemIndex: 0,
+                });
+              }}
+              active={activeIndex === index}
+              {...props}
+            />
+          </>
+        );
+      }}
     />
   );
 };

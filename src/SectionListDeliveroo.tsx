@@ -12,12 +12,14 @@ const SectionListDeliveroo: React.FC<SectionListDeliverooProps> = (props) => {
   const hasBeenSetOnScroll = React.useRef(false);
 
   const onCheckViewableItems = ({ viewableItems }: { viewableItems: ViewToken[] }) => {
-    const {
-      section: { key },
-    } = viewableItems[0];
-    const actvI = props.sections.findIndex((item) => item.key === key) - 1;
-    if (hasBeenSetOnScroll.current === true && activeIndex !== actvI) {
-      setActiveIndex(actvI < 0 ? 0 : actvI);
+    if (!!viewableItems[0]) {
+      const {
+        section: { key },
+      } = viewableItems[0];
+      const actvI = props.sections.findIndex((item) => item.key === key) - 1;
+      if (hasBeenSetOnScroll.current === true && activeIndex !== actvI) {
+        setActiveIndex(actvI < 0 ? 0 : actvI);
+      }
     }
   };
 

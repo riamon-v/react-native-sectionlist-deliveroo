@@ -1,6 +1,6 @@
 {
   "name": "react-native-sectionlist-deliveroo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This package is inspired by deliveroo App. It provides a section list with a header component to make the list bidirectionnal.\nThe header is scrolling horizontally and contains the name of the sections.\nWhile scrolling into the section list it updates the header and vice-versa",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
